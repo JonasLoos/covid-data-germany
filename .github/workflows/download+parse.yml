@@ -1,16 +1,18 @@
 name: daily RKI update
 
 on:
+ push:
+   branches:
+     - main
   schedule:
-    # - cron: "30 6 * * *"
-    - cron: "22 14 * * *"
+    - cron: "30 6 * * *"
 
 jobs:
   update_page:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@main
       - name: set up Python 3.8
         uses: actions/setup-python@v2
         with:
