@@ -10,7 +10,7 @@ import requests
 
 
 # default config
-download = False
+download = True
 input_file = 'Covid-19_Infektionen_pro_Tag.csv'
 output_file_cases = f'cases/{date.today()}.csv'
 output_file_deaths = f'deaths/{date.today()}.csv'
