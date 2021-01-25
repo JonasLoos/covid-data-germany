@@ -34,7 +34,7 @@ def RKIdownload():
 
 def RKIparse():
 	# create result matrices
-	cases = np.zeros((len(AGS)+1,maximum_number_of_days_to_assume), dtype=int)
+	cases = np.zeros((len(AGS)+1,maximum_number_of_days_to_assume+1), dtype=int)
 	day0 = date(2019,1,1).toordinal()  # ==737425, this is the first day
 	cases[0,1:] = np.arange(start=day0, stop=day0+maximum_number_of_days_to_assume)
 	deaths = cases.copy()
