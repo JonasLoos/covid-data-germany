@@ -49,52 +49,50 @@ def RKIparse(input_file=input_file, output_file_cases=output_file_cases, output_
 		# read lines (ignore the header line and the last empty line)
 		lines = [line.split(',') for line in f.readlines()[1:-1]]
 
-    # init AGS
-    cases[1:,0] = np.array(AGS)  # write the Landkreis-id to the first column
-    deaths[1:,0] = np.array(AGS)  # write the Landkreis-id to the first column
-    # for i in range(7):
-        # cases_by_age[i,1:,0] = np.array(AGS)  # write the Landkreis-id to the first column
+	# init AGS
+	cases[1:,0] = np.array(AGS)  # write the Landkreis-id to the first column
+	deaths[1:,0] = np.array(AGS)  # write the Landkreis-id to the first column
 
-    # go through lines
-    for i, entries in enumerate(lines):
+	# go through lines
+	for i, entries in enumerate(lines):
 
-        # parse line
-        assert len(entries) == 19
+		# parse line
+		assert len(entries) == 19
 
-        # available Columns:
-        # ObjectId IdBundesland Bundesland Landkreis Altersgruppe Geschlecht AnzahlFall AnzahlTodesfall Meldedatum IdLandkreis Datenstand NeuerFall NeuerTodesfall Refdatum NeuGenesen AnzahlGenesen IstErkrankungsbeginn Altersgruppe2
-        # explanations: https://www.arcgis.com/home/item.html?id=f10774f1c63e40168479a1feb6c7ca74
+		# available Columns:
+		# ObjectId IdBundesland Bundesland Landkreis Altersgruppe Geschlecht AnzahlFall AnzahlTodesfall Meldedatum IdLandkreis Datenstand NeuerFall NeuerTodesfall Refdatum NeuGenesen AnzahlGenesen IstErkrankungsbeginn Altersgruppe2
+		# explanations: https://www.arcgis.com/home/item.html?id=f10774f1c63e40168479a1feb6c7ca74
 
-        # AnzahlFall: Anzahl der Fälle in der entsprechenden Gruppe
-        new_cases = int(entries[6])
-        # AnzahlTodesfall: Anzahl der Todesfälle in der entsprechenden Gruppe
-        new_deaths = int(entries[7])
-        # Landkreis ID: Id des Landkreises des Falles in der üblichen Kodierung 1001 bis 16077=LK Altenburger Land
-        ags = fixBerlin(int(entries[9]))
-        # Meldedatum: Datum, wann der Fall dem Gesundheitsamt bekannt geworden ist
-        date_str = entries[8][:10]
-        date_obj = date(int(date_str[:4]),int(date_str[5:7]),int(date_str[8:]))
-        day = date_obj.toordinal() - day0
-        if day < 0:
-            # all reported cases should be after or on day0
-            print('Error: day == {} <= 0 ({}); skipping line {} ({} case[s])'.format(day, date_obj, i, new_cases))
-            continue
+		# AnzahlFall: Anzahl der Fälle in der entsprechenden Gruppe
+		new_cases = int(entries[6])
+		# AnzahlTodesfall: Anzahl der Todesfälle in der entsprechenden Gruppe
+		new_deaths = int(entries[7])
+		# Landkreis ID: Id des Landkreises des Falles in der üblichen Kodierung 1001 bis 16077=LK Altenburger Land
+		ags = fixBerlin(int(entries[9]))
+		# Meldedatum: Datum, wann der Fall dem Gesundheitsamt bekannt geworden ist
+		date_str = entries[8][:10]
+		date_obj = date(int(date_str[:4]),int(date_str[5:7]),int(date_str[8:]))
+		day = date_obj.toordinal() - day0
+		if day < 0:
+			# all reported cases should be after or on day0
+			print('Error: day == {} <= 0 ({}); skipping line {} ({} case[s])'.format(day, date_obj, i, new_cases))
+			continue
 
-        # convert landkreis to index
-        if ags in AGS:
-            ags_index = AGS.index(ags)+1
-        else:
-            print('Error: unknown ags {} ({}); skipping line {} ({} case[s])'.format(ags, entries[3], i, new_cases))
-            continue
+		# convert landkreis to index
+		if ags in AGS:
+			ags_index = AGS.index(ags)+1
+		else:
+			print('Error: unknown ags {} ({}); skipping line {} ({} case[s])'.format(ags, entries[3], i, new_cases))
+			continue
 
-        # set min/max dates
-        if day < firstDayFound: firstDayFound = day
-        if day > lastDayFound: lastDayFound = day
+		# set min/max dates
+		if day < firstDayFound: firstDayFound = day
+		if day > lastDayFound: lastDayFound = day
 
-        # save data
-        cases[ags_index,day+1] += new_cases
-        deaths[ags_index,day+1] += new_deaths
-        # cases_by_age[age_index, ags_index, day] += new_cases
+		# save data
+		cases[ags_index,day+1] += new_cases
+		deaths[ags_index,day+1] += new_deaths
+		# cases_by_age[age_index, ags_index, day] += new_cases
 
 	print('found data from {} until {}'.format(date.fromordinal(firstDayFound+day0), date.fromordinal(lastDayFound+day0)))
 	# check for errors
@@ -104,7 +102,7 @@ def RKIparse(input_file=input_file, output_file_cases=output_file_cases, output_
 	tmp = np.absolute(deaths[1:,1:]).sum(axis=1)>0
 	assert all(tmp), "It seems like some data is missing ({} ags have no deaths): {}".format(len(AGS)-tmp.sum(), "".join("\nline {}: {}".format(i, AGS[i]) for i in range(len(AGS)) if not tmp[i]))
 
-    # cut off the future
+	# cut off the future
 	cases = cases[:,:lastDayFound+1]
 	deaths = deaths[:,:lastDayFound+1]
 
