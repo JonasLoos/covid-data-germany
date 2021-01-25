@@ -2,7 +2,8 @@ name: daily RKI update
 
 on:
   schedule:
-    - cron: "30 6 * * *"
+    # - cron: "30 6 * * *"
+    - cron: "3 15 * * *"
 
 jobs:
   update_page:
@@ -20,13 +21,10 @@ jobs:
           pip install requests numpy
       - name: download and parse RKI data
         run: env python3 parseRKIData.py
-      - name: Commit files
-        run: |
-          git config --local user.name  ${{ github.actor }}
-          git add ./*.csv.gz
-          git commit -m "daily update"
-      - name: Push changes
-        uses: ad-m/github-push-action@master
+      - name: Commit and Push new data
+        uses: EndBug/add-and-commit@v7
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          force: true
+          add: '["cases","deaths"]'
+          author_name: "Github Action"
+          branch: main
+          message: 'Automatically Update RKI Data'
