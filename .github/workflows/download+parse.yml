@@ -2,8 +2,7 @@ name: daily RKI update
 
 on:
  push:
-   branches:
-     - main
+   branches: main
   schedule:
     - cron: "30 6 * * *"
 
