@@ -10,7 +10,7 @@ import requests
 
 
 # default config
-download = True
+download = False
 input_file = 'Covid-19_Infektionen_pro_Tag.csv'
 output_file_cases = f'cases/{date.today()}.csv'
 output_file_deaths = f'deaths/{date.today()}.csv'
@@ -47,30 +47,34 @@ def RKIparse(input_file=input_file, output_file_cases=output_file_cases, output_
 	# open file
 	with open(input_file) as f:
 		# read lines (ignore the header line and the last empty line)
-		lines = [line.split(',') for line in f.readlines()[1:-1]]
+		lines = [line.split(',') for line in f.readlines()[:-1]]
 
 	# init AGS
 	cases[1:,0] = np.array(AGS)  # write the Landkreis-id to the first column
 	deaths[1:,0] = np.array(AGS)  # write the Landkreis-id to the first column
 
+	# read column indexes
+	new_cases_i = lines[0].index('AnzahlFall')
+	new_deaths_i = lines[0].index('AnzahlTodesfall')
+	ags_i = lines[0].index('IdLandkreis')
+	date_i = lines[0].index('Meldedatum')
+	lines = lines[1:]  # cut off header line
+
 	# go through lines
 	for i, entries in enumerate(lines):
-
-		# parse line
-		assert len(entries) == 19
 
 		# available Columns:
 		# ObjectId IdBundesland Bundesland Landkreis Altersgruppe Geschlecht AnzahlFall AnzahlTodesfall Meldedatum IdLandkreis Datenstand NeuerFall NeuerTodesfall Refdatum NeuGenesen AnzahlGenesen IstErkrankungsbeginn Altersgruppe2
 		# explanations: https://www.arcgis.com/home/item.html?id=f10774f1c63e40168479a1feb6c7ca74
 
 		# AnzahlFall: Anzahl der Fälle in der entsprechenden Gruppe
-		new_cases = int(entries[6])
+		new_cases = int(entries[new_cases_i])
 		# AnzahlTodesfall: Anzahl der Todesfälle in der entsprechenden Gruppe
-		new_deaths = int(entries[7])
+		new_deaths = int(entries[new_deaths_i])
 		# Landkreis ID: Id des Landkreises des Falles in der üblichen Kodierung 1001 bis 16077=LK Altenburger Land
-		ags = fixBerlin(int(entries[9]))
+		ags = fixBerlin(int(entries[ags_i]))
 		# Meldedatum: Datum, wann der Fall dem Gesundheitsamt bekannt geworden ist
-		date_str = entries[8][:10]
+		date_str = entries[date_i][:10]
 		date_obj = date(int(date_str[:4]),int(date_str[5:7]),int(date_str[8:]))
 		day = date_obj.toordinal() - day0
 		if day < 0:
@@ -82,7 +86,7 @@ def RKIparse(input_file=input_file, output_file_cases=output_file_cases, output_
 		if ags in AGS:
 			ags_index = AGS.index(ags)+1
 		else:
-			print('Error: unknown ags {} ({}); skipping line {} ({} case[s])'.format(ags, entries[3], i, new_cases))
+			print('Error: unknown ags {}; skipping line {} ({} case[s])'.format(ags, i, new_cases))
 			continue
 
 		# set min/max dates
