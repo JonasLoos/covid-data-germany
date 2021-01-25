@@ -40,7 +40,7 @@ def RKIparse(input_file=input_file, output_file_cases=output_file_cases, output_
 	deaths = cases.copy()
 
 	# init
-	print('parsing new data ...')
+	print(f'parsing new data: {input_file}')
 	firstDayFound = 1000000  # some very high number
 	lastDayFound = -1
 
@@ -94,7 +94,7 @@ def RKIparse(input_file=input_file, output_file_cases=output_file_cases, output_
 		deaths[ags_index,day+1] += new_deaths
 		# cases_by_age[age_index, ags_index, day] += new_cases
 
-	print('found data from {} until {}'.format(date.fromordinal(firstDayFound+day0), date.fromordinal(lastDayFound+day0)))
+	print('  found data from {} until {}'.format(date.fromordinal(firstDayFound+day0), date.fromordinal(lastDayFound+day0)))
 	# check for errors
 	assert firstDayFound >= 0, "Error: Found Cases before `day0`, which were not ignored."
 	tmp = np.absolute(cases[1:,1:]).sum(axis=1)>0  # use absolute to not panic when finding zombies (deaths that are later reverted, happened e.g. in 3402 Emden)
