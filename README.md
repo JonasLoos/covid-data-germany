@@ -1,6 +1,6 @@
 Dieses Repository enthält ausgewählte Covid-Daten des RKI in einem einfachen Format.
 
-Die Daten sind in tägliche Neuinfektionen und Todesfälle pro Landkreis aufgeteilt.
+Die Daten sind in tägliche Neuinfektionen (cases) und Todesfälle (deaths) pro Landkreis aufgeteilt.
 
 *See below for an English description.*
 
