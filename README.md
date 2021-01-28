@@ -19,6 +19,10 @@ Die erste Spalte enthält ab der zweiten Zeile den [Amtlichen Gemeindeschlüssel
 
 Das RKI veröffentlicht nicht nur Daten für den aktuellen Tag sondern aktualisiert auch vergangene Tage. Deshalb unterscheiden sich die Dateien in mehr als der letzten Spalte.
 
+### Aktuelle Daten
+
+![new data](plots/new_data.png)
+
 ### Quellen
 
 Datenquelle: Robert Koch-Institut (RKI), [dl-de/by-2-0](https://www.govdata.de/dl-de/by-2-0)
