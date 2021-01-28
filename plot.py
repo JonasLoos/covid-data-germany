@@ -25,7 +25,7 @@ def plot():
     ax2.set_ylim(0,2000)
 
     for x, ax, color in [('cases', ax1, 'blue'), ('deaths', ax2, 'red')]:
-        yesterday, today = [np.genfromtxt(f'../{x}/{day}', delimiter=',') for day in sorted(os.listdir(f'../{x}'))[-2:]]
+        yesterday, today = [np.genfromtxt(f'{x}/{day}', delimiter=',') for day in sorted(os.listdir(x))[-2:]]
         n = today.shape[1]
         ax.plot(today[1:,1:].sum(axis=0), color=color, linestyle='dotted')
         ax.plot(average(today[1:,1:].sum(axis=0)), color=color)
@@ -33,7 +33,7 @@ def plot():
         ax.set_ylabel(x, color=color)
 
     fig.tight_layout()
-    plt.savefig('new_data.png', dpi=300)
+    plt.savefig('plots/new_data.png', dpi=300)
 
 
 if __name__ == "__main__":
