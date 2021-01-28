@@ -17,6 +17,7 @@ def average(data):
 
 def plot():
     fig, ax1 = plt.subplots(1, figsize=(12,8))
+    fig.suptitle('Covid-cases and -deaths')
     ax1.xaxis.set_major_formatter(mdates.DateFormatter('%d.%m.'))
     ax1.set_xlabel('date')
     ax1.set_ylim(0,40000)
@@ -33,7 +34,7 @@ def plot():
         ax.set_ylabel(x, color=color)
 
     fig.tight_layout()
-    plt.savefig('plots/new_data.png', dpi=300)
+    plt.savefig('plots/new_data.png', dpi=100)
 
 
 if __name__ == "__main__":
