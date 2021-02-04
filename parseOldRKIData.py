@@ -108,8 +108,8 @@ def RKIparse(input_file, output_file_cases=output_file_cases, output_file_deaths
 	print('  found data from {} until {}'.format(date.fromordinal(firstDayFound+day0), date.fromordinal(lastDayFound+day0)))
 
 	# cut off the future
-	cases = cases[:,:lastDayFound+1]
-	deaths = deaths[:,:lastDayFound+1]
+	cases = cases[:,:lastDayFound+2]
+	deaths = deaths[:,:lastDayFound+2]
 
 	# save csv
 	np.savetxt(output_file_cases, cases, delimiter=',', fmt='%d')
