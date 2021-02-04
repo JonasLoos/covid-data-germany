@@ -16,8 +16,7 @@ Die erste Spalte enthält ab der zweiten Zeile den [Amtlichen Gemeindeschlüssel
     16077,value-for-first-day-for-16077,value-for-second-day-for-16077,...
 
 ### Warum mehrere Dateien
-
-Das RKI veröffentlicht nicht nur Daten für den aktuellen Tag sondern aktualisiert auch vergangene Tage. Deshalb unterscheiden sich die Dateien in mehr als der letzten Spalte.
+Wenn immer nur die Daten für den aktuellen Tag hinzugefüht würden, wäre nur eine Datei nötig. Das RKI veröffentlicht jedodh nicht nur Daten für den aktuellen Tag sondern aktualisiert auch vergangene Tage. Deshalb unterscheiden sich die Dateien in mehr als der letzten Spalte.
 
 ### Aktuelle Daten
 
@@ -34,7 +33,9 @@ Das RKI veröffentlicht nicht nur Daten für den aktuellen Tag sondern aktualisi
 
 Datenquelle: Robert Koch-Institut (RKI), [dl-de/by-2-0](https://www.govdata.de/dl-de/by-2-0)
 
-Die Daten bis zum 24. Jan. 2020 sind von https://github.com/micb25/RKI_COVID19_DATA. Neue Daten werden einmal täglich heruntergeladen und aktualisiert.
+Die Daten bis zum 24. Jan. 2020 sind von https://github.com/micb25/RKI_COVID19_DATA.
+
+Neue Daten werden einmal täglich vom RKI heruntergeladen und aktualisiert.
 
 
 # English Description
@@ -63,4 +64,6 @@ The RKI publishes not only data for the current day but also updates the previou
 
 Data Source:  Robert Koch-Institut (RKI), [dl-de/by-2-0](https://www.govdata.de/dl-de/by-2-0)
 
-Data from until 2020-01-24 is from https://github.com/micb25/RKI_COVID19_DATA. New Data is downloaded and parsed once every day.
+Data from until 2020-01-24 is from https://github.com/micb25/RKI_COVID19_DATA.
+
+New Data is downloaded from the RKI and parsed once every day.
