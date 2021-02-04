@@ -15,7 +15,7 @@ def average(data):
 	return result
 
 
-def plot():
+def plot_graph(days, name):
     fig, ax1 = plt.subplots(1, figsize=(12,8))
     fig.suptitle('Covid-cases and -deaths')
     ax1.xaxis.set_major_formatter(mdates.DateFormatter('%d.%m.'))
@@ -26,16 +26,17 @@ def plot():
     ax2.set_ylim(0,2000)
 
     for x, ax, color in [('cases', ax1, 'blue'), ('deaths', ax2, 'red')]:
-        yesterday, today = [np.genfromtxt(f'{x}/{day}', delimiter=',') for day in sorted(os.listdir(x))[-2:]]
-        n = today.shape[1]
-        ax.plot(today[1:,1:].sum(axis=0), color=color, linestyle='dotted')
-        ax.plot(average(today[1:,1:].sum(axis=0)), color=color)
+        today, = [np.genfromtxt(f'{x}/{day}', delimiter=',') for day in sorted(os.listdir(x))[-1:]]
+        data = today[1:,1:].sum(axis=0)[-days:]
+        ax.plot(data, color=color, linestyle='dotted')
+        ax.plot(average(data), color=color)
         ax.tick_params(axis='y', labelcolor=color)
         ax.set_ylabel(x, color=color)
 
     fig.tight_layout()
-    plt.savefig('plots/new_data.png', dpi=100)
+    plt.savefig(f'plots/{name}.png', dpi=100)
 
 
 if __name__ == "__main__":
-    plot()
+    plot_graph(10000, 'new_data_all')
+    plot_graph(28, 'new_data_28d')
