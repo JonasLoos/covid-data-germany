@@ -21,8 +21,13 @@ Das RKI veröffentlicht nicht nur Daten für den aktuellen Tag sondern aktualisi
 
 ### Aktuelle Daten
 
-![new data (all)](plots/new_data_all.png) | ![new data (28d)](plots/new_data_28d.png)
--|-
+| Gesamter Zeitraum |
+|-|
+| ![new data (all)](plots/new_data_all.png) |
+
+| Letzte 28 Tage |
+|-|
+| ![new data (28d)](plots/new_data_28d.png) |
 
 
 ### Quellen

@@ -16,7 +16,7 @@ def average(data):
 
 
 def plot_graph(days, name):
-    fig, ax1 = plt.subplots(1, figsize=(9,6))
+    fig, ax1 = plt.subplots(1, figsize=(12,8))
     fig.suptitle('Covid-cases and -deaths')
     ax1.xaxis.set_major_formatter(mdates.DateFormatter('%d.%m.'))
     ax1.set_xlabel('date')
