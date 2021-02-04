@@ -100,8 +100,8 @@ def RKIparse(output_file_cases=output_file_cases, output_file_deaths=output_file
 	assert all(tmp), "It seems like some data is missing ({} ags have no deaths): {}".format(len(AGS)-tmp.sum(), "".join("\nline {}: {}".format(i, AGS[i]) for i in range(len(AGS)) if not tmp[i]))
 
 	# cut off the future
-	cases = cases[:,:lastDayFound+1]
-	deaths = deaths[:,:lastDayFound+1]
+	cases = cases[:,:lastDayFound+2]
+	deaths = deaths[:,:lastDayFound+2]
 
 	# save csv
 	np.savetxt(output_file_cases, cases, delimiter=',', fmt='%d')

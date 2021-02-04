@@ -20,13 +20,20 @@ Wenn immer nur die Daten für den aktuellen Tag hinzugefüht würden, wäre nur 
 
 ### Aktuelle Daten
 
+![Neue Daten (all)](plots/new_data_all.png) | ![Neue Daten (28d)](plots/new_data_28d.png)
+-|-
+![Veröffentlichungsverzögerung Fälle (all)](plots/delay_cases_all.png) | ![Veröffentlichungsverzögerung Fälle (28d)](plots/delay_cases_28d.png)
+-|-
+![Veröffentlichungsverzögerung Tode (all)](plots/delay_deaths_all.png) | ![Veröffentlichungsverzögerung Tode (28d)](plots/delay_deaths_28d.png)
+
+<!-- 
 | Gesamter Zeitraum |
 |-|
 | ![new data (all)](plots/new_data_all.png) |
 
 | Letzte 28 Tage |
 |-|
-| ![new data (28d)](plots/new_data_28d.png) |
+| ![new data (28d)](plots/new_data_28d.png) | -->
 
 
 ### Quellen
