@@ -74,7 +74,7 @@ def RKIparse(input_file, output_file_cases=output_file_cases, output_file_deaths
 			error_count += 1
 			if error_count >= 30:
 				print('Too many errors. Stopping...')
-				break
+				return
 			continue
 		if day < 0:
 			# all reported cases should be after or on day0
@@ -82,7 +82,7 @@ def RKIparse(input_file, output_file_cases=output_file_cases, output_file_deaths
 			error_count += 1
 			if error_count >= 30:
 				print('Too many errors. Stopping...')
-				break
+				return
 			continue
 
 		# convert landkreis to index
@@ -93,7 +93,7 @@ def RKIparse(input_file, output_file_cases=output_file_cases, output_file_deaths
 			error_count += 1
 			if error_count >= 30:
 				print('Too many errors. Stopping...')
-				break
+				return
 			continue
 
 		# set min/max dates
