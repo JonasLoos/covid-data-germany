@@ -19,27 +19,30 @@ def average(data):
 
 
 def plot_graph(days, name):
-    fig, ax1 = plt.subplots(1, figsize=(9,6))
+    print(f'\r{name}: plotting', end='')
+    fig, ax1 = plt.subplots(1, figsize=(6,4))
     fig.suptitle('Covid-cases and -deaths')
-    # ax1.xaxis.set_major_formatter(mdates.DateFormatter('%d.%m.%Y'))
+    ax1.xaxis.set_major_formatter(mdates.DateFormatter('%d.%m.%y'))
+    # ax1.xaxis.set_major_locator(mdates.DayLocator(interval=n//10))
+    plt.gcf().autofmt_xdate()
     ax1.set_xlabel('date')
     ax1.set_ylim(0,40000)
-    # ax1.xaxis.set_major_locator(mdates.DayLocator(interval=n//10))
     ax2 = ax1.twinx()
     ax2.set_ylim(0,2000)
 
     for x, ax, color in [('cases', ax1, 'blue'), ('deaths', ax2, 'red')]:
         today, = [np.genfromtxt(f'{x}/{day}', delimiter=',', dtype=int) for day in sorted(os.listdir(x))[-1:]]
         data = today[1:,1:].sum(axis=0)
-        normal_dates = [date.fromordinal(x) for x in range(today[0,1], today[0,1]+len(today[0,1:]))[-days:]]
+        normal_dates = [mdates.date2num(date.fromordinal(x)) for x in range(today[0,1], today[0,1]+len(today[0,1:]))[-days:]]
         ax.plot(normal_dates, data[-days:], color=color, linestyle='dotted')
-        average_days = [date.fromordinal(x) for x in range(today[0,1], today[0,1]+len(today[0,1:])-3)[-days+3:]]
+        average_days = [mdates.date2num(date.fromordinal(x)) for x in range(today[0,1], today[0,1]+len(today[0,1:])-3)[-days+3:]]
         ax.plot(average_days, average(data)[-days+3:], color=color)
         ax.tick_params(axis='y', labelcolor=color)
         ax.set_ylabel(x, color=color)
 
     fig.tight_layout()
-    plt.savefig(f'plots/{name}.png', dpi=100)
+    plt.savefig(f'plots/{name}.png', dpi=150)
+    print(f'\r{name}: done'+' '*20)
 
 
 def filename_to_date(file):
@@ -82,17 +85,17 @@ def plot_heatmap(days, measurement, name, log_scale=False):
 
     # plot
     print(f'\r{name}: creating plot'+' '*20, end='')
-    fig, ax = plt.subplots(1, figsize=(9,6))
+    fig, ax = plt.subplots(1, figsize=(6,4))
     date_box = [mdates.date2num(date.fromordinal(start_date+x)) for x in [-offset,days,0,days]]
     if log_scale:
         # data += 1  # because log 0 isn't nice
         im = ax.imshow(data, extent=date_box, cmap=plt.get_cmap('magma'), norm=colors.SymLogNorm(1, base=10))
     else:
         im = ax.imshow(data, extent=date_box, cmap=plt.get_cmap('magma'))
-    ax.xaxis.set_major_formatter(mdates.DateFormatter('%d.%m.'))
-    ax.xaxis.set_major_locator(mdates.DayLocator(interval=data.shape[1]//10))
-    ax.yaxis.set_major_formatter(mdates.DateFormatter('%d.%m.'))
-    ax.yaxis.set_major_locator(mdates.DayLocator(interval=data.shape[0]//10))
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%d.%m.%y'))
+    ax.xaxis.set_major_locator(mdates.DayLocator(interval=data.shape[1]//8))
+    ax.yaxis.set_major_formatter(mdates.DateFormatter('%d.%m.%y'))
+    ax.yaxis.set_major_locator(mdates.DayLocator(interval=data.shape[0]//8))
     plt.gcf().autofmt_xdate()
     ax.set_xlabel('date of the added data')
     ax.set_ylabel('date of publication')
@@ -101,9 +104,9 @@ def plot_heatmap(days, measurement, name, log_scale=False):
     # ax.format_xdata = mdates.DateFormatter('%Y-%m-%d')
     plt.colorbar(im, cax=cax)
 
-    fig.suptitle(f'Added covid-{measurement} per day', fontsize=14)
+    fig.suptitle(f'Added covid-{measurement} per day')
     fig.tight_layout()
-    plt.savefig(f'plots/{name}.png', dpi=100)
+    plt.savefig(f'plots/{name}.png', dpi=150)
     print(f'\r{name}: done'+' '*20)
 
 

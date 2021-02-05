@@ -20,20 +20,14 @@ Wenn immer nur die Daten für den aktuellen Tag hinzugefüht würden, wäre nur 
 
 ### Aktuelle Daten
 
+gesamter Covid-Verlauf | Covid-Verlauf des letzten Monats
+-|-
 ![Neue Daten (all)](plots/new_data_all.png) | ![Neue Daten (28d)](plots/new_data_28d.png)
--|-
+gesamte Übermittlungsverzögerung | Übermittlungsverzögerung des letzten Monats
 ![Veröffentlichungsverzögerung Fälle (all)](plots/delay_cases_all.png) | ![Veröffentlichungsverzögerung Fälle (28d)](plots/delay_cases_28d.png)
--|-
 ![Veröffentlichungsverzögerung Tode (all)](plots/delay_deaths_all.png) | ![Veröffentlichungsverzögerung Tode (28d)](plots/delay_deaths_28d.png)
 
-<!-- 
-| Gesamter Zeitraum |
-|-|
-| ![new data (all)](plots/new_data_all.png) |
-
-| Letzte 28 Tage |
-|-|
-| ![new data (28d)](plots/new_data_28d.png) | -->
+Die unteren 4 Diagramme zeigen die Übermittlungsverzögerung der RKI-Daten. Diese beschreibt die Verzögerung vom Tag des Bekanntwerden eines (Todes-)Falles bis zum Tag der Veröffentlichung durch das RKI. Bei den Covid-Fällen beträgt die Verzögerung fast immer weniger als 3 Tage, während sie bei den Covid-Todesfällen oft mehrere Wochen beträgt.
 
 
 ### Quellen
