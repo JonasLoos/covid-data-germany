@@ -84,6 +84,6 @@ The last 4 diagrams show the publication delay of the RKI-data. It describes the
 
 Data Source: Robert Koch-Institut (RKI), [dl-de/by-2-0](https://www.govdata.de/dl-de/by-2-0)
 
-Data from until Jan. 2021 is from https://github.com/micb25/RKI_COVID19_DATA.
+Data until Jan. 2021 is from https://github.com/micb25/RKI_COVID19_DATA.
 
 New Data is downloaded from the RKI and parsed once every day.
