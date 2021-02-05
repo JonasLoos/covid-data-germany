@@ -48,6 +48,8 @@ Die Daten in `cases` und `deaths` sind verfügbar unter [dl-de/by-2-0](https://w
 
 Der code ist verfügbar unter der MIT Lizenz.
 
+Autor: Jonas Loos (2021)
+
 
 # English Description
 
@@ -99,3 +101,5 @@ New Data is downloaded from the RKI and parsed once every day.
 The data in `cases` und `deaths` is available under [dl-de/by-2-0](https://www.govdata.de/dl-de/by-2-0).
 
 The code is available under the MIT license.
+
+Author: Jonas Loos (2021)
