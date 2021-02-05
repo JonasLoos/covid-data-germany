@@ -42,6 +42,12 @@ Die Daten bis Jan. 2021 sind von https://github.com/micb25/RKI_COVID19_DATA.
 
 Neue Daten werden einmal täglich vom RKI heruntergeladen und aktualisiert.
 
+### Lizenz
+
+Die Daten in `cases` und `deaths` sind verfügbar unter [dl-de/by-2-0](https://www.govdata.de/dl-de/by-2-0).
+
+Der code ist verfügbar unter der MIT Lizenz.
+
 
 # English Description
 
@@ -87,3 +93,9 @@ Data Source: Robert Koch-Institut (RKI), [dl-de/by-2-0](https://www.govdata.de/d
 Data until Jan. 2021 is from https://github.com/micb25/RKI_COVID19_DATA.
 
 New Data is downloaded from the RKI and parsed once every day.
+
+### License
+
+The data in `cases` und `deaths` is available under [dl-de/by-2-0](https://www.govdata.de/dl-de/by-2-0).
+
+The code is available under the MIT license.
