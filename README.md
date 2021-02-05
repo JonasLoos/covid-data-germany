@@ -73,7 +73,7 @@ complete covid-history | covid-history of the last month
 -|-
 ![new data (all)](plots/new_data_all.png) | ![new data (28d)](plots/new_data_28d.png)
 
-gesamte Übermittlungsverzögerung | Übermittlungsverzögerung des letzten Monats
+total publication delay | publication delay of the last month
 -|-
 ![publication delay cases (all)](plots/delay_cases_all.png) | ![publication delay cases (28d)](plots/delay_cases_28d.png)
 ![publication delay deaths (all)](plots/delay_deaths_all.png) | ![publication delay deaths (28d)](plots/delay_deaths_28d.png)
