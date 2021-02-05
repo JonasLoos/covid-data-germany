@@ -19,7 +19,7 @@ def average(data):
 
 
 def plot_graph(days, name):
-    fig, ax1 = plt.subplots(1, figsize=(12,8))
+    fig, ax1 = plt.subplots(1, figsize=(9,6))
     fig.suptitle('Covid-cases and -deaths')
     # ax1.xaxis.set_major_formatter(mdates.DateFormatter('%d.%m.%Y'))
     ax1.set_xlabel('date')
@@ -82,7 +82,7 @@ def plot_heatmap(days, measurement, name, log_scale=False):
 
     # plot
     print(f'\r{name}: creating plot'+' '*20, end='')
-    fig, ax = plt.subplots(1, figsize=(12,8))
+    fig, ax = plt.subplots(1, figsize=(9,6))
     date_box = [mdates.date2num(date.fromordinal(start_date+x)) for x in [-offset,days,0,days]]
     if log_scale:
         # data += 1  # because log 0 isn't nice
@@ -102,6 +102,7 @@ def plot_heatmap(days, measurement, name, log_scale=False):
     plt.colorbar(im, cax=cax)
 
     fig.suptitle(f'Added covid-{measurement} per day', fontsize=14)
+    fig.tight_layout()
     plt.savefig(f'plots/{name}.png', dpi=100)
     print(f'\r{name}: done'+' '*20)
 
