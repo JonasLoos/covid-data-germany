@@ -27,7 +27,7 @@ jobs:
       - name: Commit and Push new data
         uses: EndBug/add-and-commit@v7
         with:
-          add: '["cases","deaths"]'
+          add: '["cases","deaths","plots"]'
           author_name: "Github Action"
           branch: main
           message: 'Automatically Update RKI Data'
