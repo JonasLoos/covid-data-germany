@@ -36,7 +36,7 @@ Die unteren 4 Diagramme zeigen die Übermittlungsverzögerung der RKI-Daten. Die
 
 ### Quellen
 
-Datenquelle: Robert Koch-Institut (RKI), [dl-de/by-2-0](https://www.govdata.de/dl-de/by-2-0)
+Herkunft der Ausgangsdaten: Robert Koch-Institut (RKI), [dl-de/by-2-0](https://www.govdata.de/dl-de/by-2-0)
 
 Die Daten bis Jan. 2021 sind von https://github.com/micb25/RKI_COVID19_DATA.
 
@@ -90,7 +90,7 @@ The last 4 diagrams show the publication delay of the RKI-data. It describes the
 
 ### Data Sources
 
-Data Source: Robert Koch-Institut (RKI), [dl-de/by-2-0](https://www.govdata.de/dl-de/by-2-0)
+Raw data source: Robert Koch-Institut (RKI), [dl-de/by-2-0](https://www.govdata.de/dl-de/by-2-0)
 
 Data until Jan. 2021 is from https://github.com/micb25/RKI_COVID19_DATA.
 
