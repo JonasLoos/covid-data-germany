@@ -94,10 +94,10 @@ def RKIparse(output_file_cases=output_file_cases, output_file_deaths=output_file
 	print('  found data from {} until {}'.format(date.fromordinal(firstDayFound+day0), date.fromordinal(lastDayFound+day0)))
 	# check for errors
 	assert firstDayFound >= 0, "Error: Found Cases before `day0`, which were not ignored."
-	tmp = np.absolute(cases[1:,1:]).sum(axis=1)>0  # use absolute to not panic when finding zombies (deaths that are later reverted, happened e.g. in 3402 Emden)
-	assert all(tmp), "It seems like some data is missing ({} ags have no cases) {}".format(len(AGS)-tmp.sum(),"".join("\nline {}: {}".format(i, AGS[i]) for i in range(len(AGS)) if not tmp[i]))
-	tmp = np.absolute(deaths[1:,1:]).sum(axis=1)>0
-	assert all(tmp), "It seems like some data is missing ({} ags have no deaths): {}".format(len(AGS)-tmp.sum(), "".join("\nline {}: {}".format(i, AGS[i]) for i in range(len(AGS)) if not tmp[i]))
+	# tmp = np.absolute(cases[1:,1:]).sum(axis=1)>0  # use absolute to not panic when finding zombies (deaths that are later reverted, happened e.g. in 3402 Emden)
+	# assert all(tmp), "It seems like some data is missing ({} ags have no cases) {}".format(len(AGS)-tmp.sum(),"".join("\nline {}: {}".format(i, AGS[i]) for i in range(len(AGS)) if not tmp[i]))
+	# tmp = np.absolute(deaths[1:,1:]).sum(axis=1)>0
+	# assert all(tmp), "It seems like some data is missing ({} ags have no deaths): {}".format(len(AGS)-tmp.sum(), "".join("\nline {}: {}".format(i, AGS[i]) for i in range(len(AGS)) if not tmp[i]))
 
 	# cut off the future
 	cases = cases[:,:lastDayFound+2]
