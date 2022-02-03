@@ -23,12 +23,11 @@ AGS = [1001,1002,1003,1004,1051,1053,1054,1055,1056,1057,1058,1059,1060,1061,106
 def RKIparse(output_file_cases=output_file_cases, output_file_deaths=output_file_deaths):
 
 	# download the data from the RKI
-	try:
-		print('downloading new data from RKI...')
-		data = io.BytesIO(requests.get('https://opendata.arcgis.com/datasets/dd4580c810204019a7b8eb3e0b329dd6_0.csv').content)
-	except requests.exceptions.ConnectionError as e:
-		print('Could not download file (no internet?)')
-		exit()
+	print('downloading new data from RKI...')
+	response = requests.get('https://opendata.arcgis.com/datasets/dd4580c810204019a7b8eb3e0b329dd6_0.csv')
+	response.raise_for_status()
+	data = io.BytesIO(response.content)
+	print('Could not download file (no internet?)')
 	lines = [line.decode('utf-8', errors='ignore').split(',') for line in data.readlines()[:-1]]
 
 	# create result matrices
