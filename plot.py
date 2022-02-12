@@ -26,9 +26,9 @@ def plot_graph(days, name):
     # ax1.xaxis.set_major_locator(mdates.DayLocator(interval=n//10))
     plt.gcf().autofmt_xdate()
     ax1.set_xlabel('date')
-    ax1.set_ylim(0,80000)
+    ax1.set_ylim(0,200000)  # max cases
     ax2 = ax1.twinx()
-    ax2.set_ylim(0,4000)
+    ax2.set_ylim(0,2000)   # max deaths
 
     for x, ax, color in [('cases', ax1, 'blue'), ('deaths', ax2, 'red')]:
         today, = [np.genfromtxt(f'{x}/{day}', delimiter=',', dtype=int) for day in sorted(os.listdir(x))[-1:]]
