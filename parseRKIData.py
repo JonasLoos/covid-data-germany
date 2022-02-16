@@ -14,6 +14,7 @@ import requests, io
 output_file_cases = f'cases/{date.today()}.csv'
 output_file_deaths = f'deaths/{date.today()}.csv'
 maximum_number_of_days_to_assume = 3*365
+download_link = 'https://opendata.arcgis.com/datasets/dd4580c810204019a7b8eb3e0b329dd6_0.csv'  # yields 404 since 16.02.2022
 
 
 # constants
@@ -24,7 +25,7 @@ def RKIparse(output_file_cases=output_file_cases, output_file_deaths=output_file
 
 	# download the data from the RKI
 	print('downloading new data from RKI...')
-	response = requests.get('https://opendata.arcgis.com/datasets/dd4580c810204019a7b8eb3e0b329dd6_0.csv')
+	response = requests.get(download_link)
 	response.raise_for_status()
 	data = io.BytesIO(response.content)
 	print('Could not download file (no internet?)')
