@@ -1,3 +1,9 @@
+Dieses Repo ist **stillgelegt**, da das RKI den permanenten Link zum Datendownload deaktiviert hat.
+
+This repo is **disconued**, as the RKI disabled the permanent Link for the data download.
+
+---
+
 Dieses Repository enthält ausgewählte Covid-Daten des RKI in einem einfachen Format und wird täglich aktualisiert.
 
 Die Daten sind in tägliche Neuinfektionen (cases) und Todesfälle (deaths) pro Landkreis aufgeteilt.
