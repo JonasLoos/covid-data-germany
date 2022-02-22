@@ -1,6 +1,6 @@
-Dieses Repo ist **stillgelegt**, da das RKI den permanenten Link zum Datendownload deaktiviert hat.
+Dieses Repo ist **stillgelegt** seit dem 16.02.2022, da das RKI den permanenten Link zum Datendownload deaktiviert hat.
 
-This repo is **disconued**, as the RKI disabled the permanent Link for the data download.
+This repo is **disconued** since 16.02.2022, as the RKI disabled the permanent Link for the data download.
 
 ---
 
